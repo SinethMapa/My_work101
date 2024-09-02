@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    {{> header}}
+
+    <!-- Theme Toggle Switch (Place this inside the body) -->
+    <label class="switch">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider round"></span>
+    </label>
+
+    <div class="container">
+        <h1>Weather App</h1>
+        <form action="/weather" method="POST">
+            <input type="text" name="city" placeholder="Enter city name" required>
+            <button type="submit">Get Weather</button>
+        </form>
+
+        {{#if error}}
+            <p class="error">{{error}}</p>
+        {{/if}}
+
+        {{#if weather}}
+            <div class="weather-info">
+                <h2>{{weather.city}}, {{weather.country}}</h2>
+                <p><img src="{{weather.icon}}" alt="Weather Icon"> {{weather.description}}</p>
+                <p>Temperature: {{weather.temperature}}°C</p>
+            </div>
+        {{/if}}
+    </div>
+
+    <!-- Include the script at the end of the body for better performance -->
+    <script src="/script.js"></script>
+
+</body>
+</html>
